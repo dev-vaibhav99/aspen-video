@@ -4,7 +4,6 @@ function searchVideo() {
     if (query) {
         query = replaceQueryParams(query);
         const url = `https://webmd-a.akamaihd.net/delivery/${query}`;
-        console.log(url)
         const videoFrame = document.getElementById('videoFrame');
         const videoPlayer = document.getElementById('videoPlayer');
         const linkContainer = document.getElementById('link-container');
