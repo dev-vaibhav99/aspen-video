@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+        }
+        .container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .container button {
+            width: 48%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+        .video-frame {
+            margin-top: 20px;
+            display: none;
+        }
+        .video-frame iframe {
+            width: 100%;
+            height: 315px;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Video Search</h1>
+        <input type="text" id="searchQuery" placeholder="Enter search text">
+        <div class="button-container">
+            <button onclick="searchVideo()">Submit</button>
+            <button onclick="resetSearch()">Reset</button>
+        </div>
+        <div class="video-frame" id="videoFrame">
+            <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        function searchVideo() {
+            const query = document.getElementById('searchQuery').value;
+            if (query) {
+                const url = `https://webmd-a.akamaihd.net/delivery/${encodeURIComponent(query)}`;
+                const videoFrame = document.getElementById('videoFrame');
+                const videoPlayer = document.getElementById('videoPlayer');
+                videoPlayer.src = url;
+                videoFrame.style.display = 'block';
+            }
+        }
+
+        function resetSearch() {
+            document.getElementById('searchQuery').value = '';
+            const videoFrame = document.getElementById('videoFrame');
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = '';
+            videoFrame.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

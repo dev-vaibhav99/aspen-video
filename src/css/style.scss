@@ -1,0 +1,56 @@
+$color_1: #fff;
+$font-family_1: Arial, sans-serif;
+$background-color_1: #f0f0f0;
+$background-color_2: #fff;
+$background-color_3: #007BFF;
+$background-color_4: #0056b3;
+
+body {
+	font-family: $font-family_1;
+	background-color: $background-color_1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+.container {
+	background-color: $background-color_2;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 600px;
+	text-align: center;
+	h1 {
+		margin-bottom: 20px;
+	}
+	input[type="text"] {
+		width: 80%;
+		padding: 10px;
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+	button {
+		padding: 10px 20px;
+		background-color: $background-color_3;
+		color: $color_1;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		&:hover {
+			background-color: $background-color_4;
+		}
+	}
+}
+.video-frame {
+	margin-top: 20px;
+	display: none;
+	iframe {
+		width: 100%;
+		height: 315px;
+		border: none;
+		border-radius: 8px;
+	}
+}
