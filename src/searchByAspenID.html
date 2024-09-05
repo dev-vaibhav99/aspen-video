@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aspen Video Tester</title>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Aspen Video Tester</h1>
+		<input type="text" id="searchQuery" placeholder="Enter aspen Id here">
+		<div class="button-container">
+			<button onclick="searchVideo()">Submit</button>
+			<button onclick="resetSearch()">Reset</button>
+		</div>
+		<div id="link-container">
+			<p id="linkPlaceholder"></p>
+		</div>
+		<div class="video-frame" id="videoFrame">
+			<iframe id="videoPlayer" src="" allowfullscreen></iframe>
+		</div>
+	</div>
+
+	<script src="./js/script.js" type="text/javascript">
+	</script>
+</body>
+
+</html>
