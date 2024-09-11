@@ -7,13 +7,18 @@ const linkPlaceholder = document.getElementById('linkPlaceholder');
 const errorContainer = document.getElementById('error-container');
 const errorPlaceholder = document.getElementById('errorPlaceholder');
 const notifications = document.querySelector(".notifications");
+const copyBtn = document.getElementById("copyBtn");
 
 window.addEventListener("load", () => {
     createToast();
 });
 query.addEventListener('keyup', () => {
     query.setAttribute('value', query.value);
-})
+});
+
+copyBtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(linkPlaceholder.innerText);
+});
 
 const searchVideo = () => {
     let aspenID = query.value;
@@ -45,8 +50,10 @@ const searchVideo = () => {
             const url = `https://webmd-a.akamaihd.net/delivery/${wbmdLocUrl}`;
             videoPlayer.src = url;
             videoFrame.style.display = 'block';
-            linkContainer.style.display = 'block';
-            linkPlaceholder.innerText = url;
+            linkContainer.style.display = 'flex';
+            linkPlaceholder.textContent = url;
+            linkPlaceholder.setAttribute('href', url);
+
         })
         .catch(error => console.error('Error:', error));
 }
@@ -102,3 +109,4 @@ const createToast = () => {
     notifications.appendChild(toast);
     toast.timeoutId = setTimeout(() => removeToast(toast), toastDetails.timer);
 }
+

@@ -1,6 +1,6 @@
 :root {
     --dark: #1a1a1a;
-    --light: #ffffff;
+    --light: #f8f8ff;
 }
 
 body {
@@ -54,7 +54,7 @@ body {
 .text {
     padding: 0 0.5rem 1rem 0;
     background-color: transparent;
-    color: #111;
+    color: var(--light);
 }
 
 .container-main input[type="text"] {
@@ -62,11 +62,14 @@ body {
     width: 97%;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #111;
+    border: 1px solid #f8f8ff;
+    background-color: #1a1a1a;
     border-radius: 4px;
     padding: 1 1.2rem;
     font-size: large;
     font-family: "Mukta Mahee", sans-serif;
+    caret-color: var(--light);
+    color: var(--light);
 }
 
 input:focus+.placeholder-text .text,
@@ -90,6 +93,13 @@ input:focus+.placeholder-text .text {
     outline: none;
 }
 
+a {
+    color: #f8f8ff;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 1rem;
+}
+
 .button-container {
     display: flex;
     justify-content: space-between;
@@ -107,7 +117,7 @@ input:focus+.placeholder-text .text {
 
 .container-main .reset-btn {
     color: #111;
-    background-color: #f8f8ff;
+    background-color: var(--light);
 }
 
 .container-main .submit-btn {
@@ -123,9 +133,11 @@ input:focus+.placeholder-text .text {
 .container-main #link-container {
     width: 100%;
     margin-top: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #333333;
     border-radius: 4px;
     display: none;
+    position: relative;
+    justify-content: center;
 }
 
 .video-frame {
