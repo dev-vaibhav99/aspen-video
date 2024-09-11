@@ -7,6 +7,10 @@ const linkPlaceholder = document.getElementById('linkPlaceholder');
 const errorContainer = document.getElementById('error-container');
 const errorPlaceholder = document.getElementById('errorPlaceholder');
 const notifications = document.querySelector(".notifications");
+
+window.addEventListener("load", () => {
+    createToast();
+});
 query.addEventListener('keyup', () => {
     query.setAttribute('value', query.value);
 })
@@ -23,7 +27,7 @@ const searchVideo = () => {
             const xmlDoc = parser.parseFromString(xmlData, 'text/xml');
             let wbmdLocUrlXML = xmlDoc.querySelector('wbmd_c_loc_url');
 
-            if(!wbmdLocUrlXML) {
+            if (!wbmdLocUrlXML) {
                 errorContainer.style.display = 'block';
                 errorPlaceholder.innerText = 'Aspen ID not found!';
                 return;
@@ -82,14 +86,14 @@ const toastDetails = {
 }
 const removeToast = (toast) => {
     toast.classList.add("hide");
-    if(toast.timeoutId) clearTimeout(toast.timeoutId);
+    if (toast.timeoutId) clearTimeout(toast.timeoutId);
     setTimeout(() => toast.remove(), 500);
 }
 const createToast = () => {
     const { icon, text } = toastDetails['info'];
     const toast = document.createElement("li");
     toast.className = `toast ${'info'}`;
-    
+
     toast.innerHTML = `<div class="column">
                          <i class="fa-solid ${icon}"></i>
                          <span>${text}</span>
