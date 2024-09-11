@@ -6,6 +6,10 @@ const linkContainer = document.getElementById('link-container');
 const linkPlaceholder = document.getElementById('linkPlaceholder');
 const errorContainer = document.getElementById('error-container');
 const errorPlaceholder = document.getElementById('errorPlaceholder');
+const notifications = document.querySelector(".notifications");
+query.addEventListener('keyup', () => {
+    query.setAttribute('value', query.value);
+})
 
 const searchVideo = () => {
     let aspenID = query.value;
@@ -14,9 +18,17 @@ const searchVideo = () => {
     fetch(apiUrl)
         .then(response => response.text())
         .then(xmlData => {
-            resetSearch();
+            resetMedia();
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(xmlData, 'text/xml');
+            let wbmdLocUrlXML = xmlDoc.querySelector('wbmd_c_loc_url');
+
+            if(!wbmdLocUrlXML) {
+                errorContainer.style.display = 'block';
+                errorPlaceholder.innerText = 'Aspen ID not found!';
+                return;
+            }
+
             let wbmdLocUrl = xmlDoc.querySelector('wbmd_c_loc_url').textContent;
 
             wbmdLocUrl = replaceQueryParams(wbmdLocUrl);
@@ -35,14 +47,19 @@ const searchVideo = () => {
         .catch(error => console.error('Error:', error));
 }
 
-function replaceQueryParams(url) {
+const replaceQueryParams = (url) => {
     const pattern = /,4500k,2500k,1000k,750k,400k,/;
     const newUrl = url.replace(pattern, '1000k');
     return newUrl;
 }
 
-function resetSearch() {
+const resetSearch = () => {
+    query.setAttribute('value', "");
     query.value = '';
+    resetMedia();
+}
+
+const resetMedia = () => {
     videoPlayer.src = '';
     videoFrame.style.display = 'none';
     linkContainer.style.display = 'none';
@@ -51,6 +68,33 @@ function resetSearch() {
     errorPlaceholder.innerText = '';
 }
 
-function validatePath(path) {
+const validatePath = (path) => {
     return /^[a-zA-Z0-9\/,_-]+\.mp4$/.test(path);
+}
+
+// TODO: Toast notification to connect the VPN when the page loads.
+const toastDetails = {
+    timer: 5000,
+    info: {
+        icon: 'fa-circle-info',
+        text: 'Note: Kindly connect to the VPN for it to work',
+    }
+}
+const removeToast = (toast) => {
+    toast.classList.add("hide");
+    if(toast.timeoutId) clearTimeout(toast.timeoutId);
+    setTimeout(() => toast.remove(), 500);
+}
+const createToast = () => {
+    const { icon, text } = toastDetails['info'];
+    const toast = document.createElement("li");
+    toast.className = `toast ${'info'}`;
+    
+    toast.innerHTML = `<div class="column">
+                         <i class="fa-solid ${icon}"></i>
+                         <span>${text}</span>
+                      </div>
+                      <i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`;
+    notifications.appendChild(toast);
+    toast.timeoutId = setTimeout(() => removeToast(toast), toastDetails.timer);
 }
