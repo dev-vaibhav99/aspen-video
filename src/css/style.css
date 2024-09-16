@@ -1,36 +1,95 @@
 :root {
-    --dark: #1a1a1a;
-    --light: #f8f8ff;
+    --body-color: #f1f3fb;
+    --text-color: #011440;
+    --container-color: #fff;
+    --container-border-shadow: #011440;
+    --container-border: #fff;
+    --border: #444cf7;
+    --submit-bg-color: #f8f8ff;
+    --submit-color: #444cf7;
+    --reset-bg-color: #444cf7;
+    --reset-color: #fff;
+    --placeholder-color: #5f7086;
+    --notification-text: #3d251e;
+    --bg-image: radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+    --input-border: 1px solid #011440;
+
+    --font-family: "Mukta Mahee", sans-serif;
+    --heading-font-family: "Montserrat", sans-serif;
+}
+
+.darkmode {
+    --body-color: #111;
+    --text-color: #f8f8ff;
+    --container-color: #1a1a1a;
+    --container-border-shadow: #111;
+    --container-border: #444;
+    --border: #f8f8ff;
+    --submit-bg-color: #111;
+    --submit-color: #f8f8ff;
+    --reset-bg-color: #f8f8ff;
+    --reset-color: #1a1a1a;
+    --placeholder-color: #8f8f8f;
+    --bg-image: radial-gradient(#e6e6e6 0.5px, transparent 0.5px), radial-gradient(#a5a5a5 0.5px, #1d1d1d 0.5px);
+    --input-border: 1px solid #f8f8ff;
+
 }
 
 body {
-    font-family: "Mukta Mahee", sans-serif;
-    background-color: #111;
-    color: #f8f8ff;
+    font-family: var(--font-family);
+    background-color: #e5e5f7;
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+    padding: 5rem 0;
+    background-image: var(--bg-image);
+}
+
+.toggle-container {
+    padding: 10px;
+    border-radius: 50px;
+    border: var(--input-border);
+    width: 1rem;
+    height: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    cursor: pointer;
+    z-index: 10;
     margin: 0;
 }
 
 .container-main {
-    background-color: #1a1a1a;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #444444;
-    box-shadow: 0 0 10px #000;
+    background-color: var(--container-color);
+    padding: 2rem;
+    border-radius: 18px;
+    border: 1px solid var(--container-border);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     width: 100%;
-    /* min-width: 600px; */
     max-width: 700px;
     text-align: center;
-    margin: 20px;
     font-size: 1rem;
+    position: relative;
+    top: 0;
+    bottom: 5rem;
+}
+
+.container-main .heading-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2rem;
+    margin-bottom: 4rem;
 }
 
 .container-main h1 {
-    margin-bottom: 20px;
-    color: #f8f8ff;
+    color: var(--text-color);
+    font-family: var(--heading-font-family);
 }
 
 .container-main .input-contain {
@@ -40,21 +99,21 @@ body {
 .placeholder-text {
     position: absolute;
     top: 0;
-    bottom: 0;
-    left: 0;
+    bottom: 5px;
+    left: 10px;
     right: 0;
     border: 3px solid transparent;
     background-color: transparent;
     display: flex;
     align-items: center;
     pointer-events: none;
-    padding: 0 1.2rem;
+    padding: 0 0.5rem;
 }
 
 .text {
-    padding: 0 0.5rem 1rem 0;
+    padding: 0 0 1rem 0;
     background-color: transparent;
-    color: var(--light);
+    color: var(--placeholder-color);
 }
 
 .container-main input[type="text"] {
@@ -62,31 +121,33 @@ body {
     width: 97%;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #f8f8ff;
-    background-color: #1a1a1a;
+    border: var(--input-border);
+    background-color: var(--container-color);
     border-radius: 4px;
     padding: 1 1.2rem;
     font-size: large;
-    font-family: "Mukta Mahee", sans-serif;
-    caret-color: var(--light);
-    color: var(--light);
+    font-family: var(--font-family);
+    caret-color: var(--text-color);
+    color: var(--text-color);
+    caret-shape: block;
 }
 
 input:focus+.placeholder-text .text,
 :not(input[value=""])+.placeholder-text .text {
-    background-color: transparent;
+    background-color: var(--container-color);
     font-size: 0.8rem;
-    color: #f8f8ff;
-    transform: translate(0, -100%);
+    color: var(--text-color);
+    transform: translate(-10%, -50%);
+    padding: 1rem 0.5rem;
 }
 
 input:focus+.placeholder-text .text {
-    color: #f8f8ff;
+    color: var(--text-color);
 }
 
 .text {
     transform: translate(0);
-    transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out;
+    transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out, padding 0.15s ease-out;
 }
 
 .container-main input[type="text"]:focus {
@@ -94,7 +155,7 @@ input:focus+.placeholder-text .text {
 }
 
 a {
-    color: #f8f8ff;
+    color: var(--text-color);
     text-decoration: none;
     cursor: pointer;
     margin: 1rem;
@@ -109,21 +170,21 @@ a {
     font-size: 1rem;
     width: 48%;
     padding: 10px;
-    border: 1px solid #111;
+    border: 1px solid var(--border);
     border-radius: 4px;
     cursor: pointer;
-    font-family: "Mukta Mahee", sans-serif;
-}
-
-.container-main .reset-btn {
-    color: #111;
-    background-color: var(--light);
+    font-family: var(--font-family);
 }
 
 .container-main .submit-btn {
-    background-color: #111;
-    color: #f8f8ff;
-    border: 1px solid #fff;
+    color: var(--reset-color);
+    background-color: var(--reset-bg-color);
+}
+
+.container-main .reset-btn {
+    background-color: var(--submit-bg-color);
+    color: var(--submit-color);
+    border: 1px solid var(--border);
 }
 
 .container-main button:hover {
@@ -132,7 +193,7 @@ a {
 
 .container-main #link-container {
     width: 100%;
-    margin-top: 10px;
+    margin: 20px 0;
     border: 1px solid #333333;
     border-radius: 4px;
     display: none;
@@ -145,6 +206,13 @@ a {
     display: none;
 }
 
+.video-frame p {
+    text-align: start;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
 .video-frame iframe {
     width: 100%;
     height: 400px;
@@ -155,7 +223,7 @@ a {
 /* Toast notifications */
 .notifications {
     position: fixed;
-    top: 30px;
+    top: 0;
     right: 20px;
 }
 
@@ -172,8 +240,8 @@ a {
     border-radius: 4px;
     padding: 16px 17px;
     margin-bottom: 10px;
-    background: var(--light);
-    color: var(--dark);
+    background: var(--container-color);
+    color: var(--text-color);
     justify-content: space-between;
     animation: show_toast 0.3s ease forwards;
 }
@@ -236,7 +304,7 @@ a {
 
 .toast.info::before,
 .btn#info {
-    background: var(--dark);
+    background: var(--text-color);
 }
 
 .toast .column i {
@@ -244,7 +312,7 @@ a {
 }
 
 .toast.info .column i {
-    color: var(--dark);
+    color: var(--text-color);
 }
 
 .toast .column span {
@@ -252,23 +320,20 @@ a {
     margin-left: 12px;
 }
 
-.toast i:last-child {
-    color: #aeb0d7;
-    cursor: pointer;
-}
-
-.toast i:last-child:hover {
-    color: var(--dark);
+@media screen and (max-width: 768px) {
+    body {
+        padding: 5rem 2rem;
+    }
 }
 
 @media screen and (max-width: 530px) {
     .notifications {
-        width: 95%;
+        width: 90%;
     }
 
     .notifications .toast {
         width: 100%;
-        font-size: 1rem;
+        font-size: 0.8rem;
         margin-left: 20px;
     }
 }

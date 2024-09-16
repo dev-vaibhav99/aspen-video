@@ -8,6 +8,7 @@ const errorContainer = document.getElementById('error-container');
 const errorPlaceholder = document.getElementById('errorPlaceholder');
 const notifications = document.querySelector(".notifications");
 const copyBtn = document.getElementById("copyBtn");
+const videoTitle = document.getElementById("videoTitle");
 
 window.addEventListener("load", () => {
     createToast();
@@ -31,6 +32,7 @@ const searchVideo = () => {
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(xmlData, 'text/xml');
             let wbmdLocUrlXML = xmlDoc.querySelector('wbmd_c_loc_url');
+            let title = xmlDoc.querySelector('title');
 
             if (!wbmdLocUrlXML) {
                 errorContainer.style.display = 'block';
@@ -48,6 +50,7 @@ const searchVideo = () => {
                 return;
             }
             const url = `https://webmd-a.akamaihd.net/delivery/${wbmdLocUrl}`;
+            videoTitle.textContent = title && title.textContent;
             videoPlayer.src = url;
             videoFrame.style.display = 'block';
             linkContainer.style.display = 'flex';
