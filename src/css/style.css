@@ -3,7 +3,7 @@
     --text-color: #011440;
     --container-color: #fff;
     --container-border-shadow: #011440;
-    --container-border: #fff;
+    --container-border: 1px solid #fff;
     --border: #444cf7;
     --submit-bg-color: #f8f8ff;
     --submit-color: #444cf7;
@@ -23,14 +23,14 @@
     --text-color: #f8f8ff;
     --container-color: #1a1a1a;
     --container-border-shadow: #111;
-    --container-border: #444;
+    --container-border: 1px solid #444;
     --border: #f8f8ff;
     --submit-bg-color: #111;
     --submit-color: #f8f8ff;
     --reset-bg-color: #f8f8ff;
     --reset-color: #1a1a1a;
     --placeholder-color: #8f8f8f;
-    --bg-image: radial-gradient(#e6e6e6 0.5px, transparent 0.5px), radial-gradient(#a5a5a5 0.5px, #1d1d1d 0.5px);
+    --bg-image: radial-gradient(#6a6a6a 0.5px, transparent 0.5px), radial-gradient(#616161 0.5px, #1d1d1d 0.5px);
     --input-border: 1px solid #f8f8ff;
 
 }
@@ -48,6 +48,11 @@ body {
     margin: 0;
     padding: 5rem 0;
     background-image: var(--bg-image);
+}
+
+.pane > div {
+    display: flex;
+    justify-content: center;
 }
 
 .toggle-container {
@@ -68,7 +73,7 @@ body {
     background-color: var(--container-color);
     padding: 2rem;
     border-radius: 18px;
-    border: 1px solid var(--container-border);
+    border: var(--container-border);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     width: 100%;
     max-width: 700px;
@@ -88,6 +93,7 @@ body {
 }
 
 .container-main h1 {
+    font-size: 2rem;
     color: var(--text-color);
     font-family: var(--heading-font-family);
 }
@@ -98,20 +104,17 @@ body {
 
 .placeholder-text {
     position: absolute;
-    top: 0;
-    bottom: 5px;
+    top: 0.2rem;
     left: 10px;
     right: 0;
     border: 3px solid transparent;
     background-color: transparent;
     display: flex;
-    align-items: center;
     pointer-events: none;
-    padding: 0 0.5rem;
+    padding: 0;
 }
 
 .text {
-    padding: 0 0 1rem 0;
     background-color: transparent;
     color: var(--placeholder-color);
 }
@@ -137,8 +140,8 @@ input:focus+.placeholder-text .text,
     background-color: var(--container-color);
     font-size: 0.8rem;
     color: var(--text-color);
-    transform: translate(-10%, -50%);
-    padding: 1rem 0.5rem;
+    transform: translate(-10%, -80%);
+    padding: 0 0.5rem;
 }
 
 input:focus+.placeholder-text .text {
@@ -147,7 +150,7 @@ input:focus+.placeholder-text .text {
 
 .text {
     transform: translate(0);
-    transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out, padding 0.15s ease-out;
+    transition: transform 0.15s ease-out, font-size 0.15s ease-out, padding 0.15s ease-out;
 }
 
 .container-main input[type="text"]:focus {
@@ -238,6 +241,7 @@ a {
     overflow: hidden;
     list-style: none;
     border-radius: 4px;
+    border: var(--container-border);
     padding: 16px 17px;
     margin-bottom: 10px;
     background: var(--container-color);
