@@ -104,7 +104,7 @@ body {
 
 .placeholder-text {
     position: absolute;
-    top: 0.2rem;
+    top: 0.5rem;
     left: 10px;
     right: 0;
     border: 3px solid transparent;
@@ -127,12 +127,11 @@ body {
     border: var(--input-border);
     background-color: var(--container-color);
     border-radius: 4px;
-    padding: 1 1.2rem;
+    /* padding: 1rem 1.2rem; */
     font-size: large;
     font-family: var(--font-family);
     caret-color: var(--text-color);
     color: var(--text-color);
-    caret-shape: block;
 }
 
 input:focus+.placeholder-text .text,
